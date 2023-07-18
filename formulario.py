@@ -495,7 +495,6 @@ while opcion != "0":
 
 
     elif perfil == "trabajador":
-        # Resto del código para el perfil de Trabajador
         print("Bienvenido, Trabajador.")
         opcion = ""
 
@@ -510,7 +509,6 @@ while opcion != "0":
             opcion = input("Ingrese el número de la opción deseada: ")
 
             if opcion == "1":
-                # Lógica para ver los datos del trabajador
                 nombre_trabajador = input("Ingrese su nombre (Ingrese '0' para volver al menú): ")
 
                 if nombre_trabajador == "0":
@@ -584,17 +582,50 @@ while opcion != "0":
                         print(table_cargasfamiliares)
                     else:
                         print("El trabajador no tiene cargas familiares.")
+
+                # Opción para editar los datos del trabajador
+                table_opciones_edicion = BeautifulTable()
+                table_opciones_edicion.columns.header = ["Opción", "Descripción"]
+                table_opciones_edicion.append_row(["1", "Sí"])
+                table_opciones_edicion.append_row(["0", "No"])
+                print("Desea editar sus datos?")
+                print(table_opciones_edicion)
+
+                opcion_edicion = input("Ingrese el número de la opción deseada: ")
+
+                if opcion_edicion == "1":
+                    # Mostrar la lista de atributos para modificar
+                    lista_atributos = ["Nombre","Dirección", "Teléfono", "Nombre Contacto","Teléfono Contacto","Nombre Carga", "Parentesco","RUT Carga"]
+
+                    print("Atributos disponibles para modificar:")
+                    table_atributos = BeautifulTable()
+                    table_atributos.columns.header = ["Opción", "Atributo"]
+                    for i, atributo in enumerate(lista_atributos):
+                        table_atributos.append_row([i + 1, atributo])
+                    print(table_atributos)
+
+                    # Solicitar al usuario que ingrese el número del atributo a modificar
+                    opcion_atributo = input("Ingrese el número del atributo que desea modificar: ")
+
+
+
+
+                        # Actualizar el atributo en la tabla Trabajador
+                    cursor = conexion.connection.cursor()
+                    cursor.execute(f"UPDATE Trabajador SET {atributo_seleccionado.lower()} = '{nuevo_valor}' WHERE id_trabajador = {pk_trabajador}")
+                    conexion.connection.commit()
+                    cursor.close()
+
+                    print("¡Los datos han sido actualizados!")
                 else:
-                    print("No se encontraron datos para el trabajador.")
+                    print("Opción inválida.")
+            elif opcion_edicion == "0":
+                print("No se realizaron modificaciones.")
 
-            elif opcion == "0":
-                # Salir del programa
-                print("¡Hasta luego!")
+        else:
+            print("No se encontraron datos para el trabajador.")
 
-            else:
-                print("Opción inválida. Por favor, elija una opción válida.")
-
-        # Volver a la parte donde se presentan las opciones
+    # Volver a la parte donde se presentan las opciones
 
 # Cerrar la conexión
 conexion.connection.close()
