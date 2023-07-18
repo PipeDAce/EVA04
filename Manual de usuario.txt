@@ -1,0 +1,96 @@
+MANUAL DE USUARIO PARA LOS TRABAJADORES 
+
+¡Bienvenido al nuevo sistema de gestión de información de trabajadores! Este manual te 
+proporcionará instrucciones sobre cómo utilizar el sistema de manera eficiente y acceder a la 
+información relevante. A continuación, se detallan las opciones disponibles según tu rol en la 
+empresa.
+
+Acceder como Jefe de Recursos Humanos dispondrá de dos opciones para escoger.
+
+° Primero podrá ver la lista completa de todos los trabajadores de la empresa, la cual contendrá 
+información como el RUT, nombre completo, sexo y cargo del trabajador. (OPCION 1)
+
+° Segundo, podrá ver la lista completa de todos los trabajadores filtrando su búsqueda de 3 
+maneras diferentes: Sexo, Cargo y Área/Departamento. (OPCION 2)
+
+** DEPENDIENDO DE SU ELECCION DEBERA ESCOGER EL NUMERO DE LA OPCION A DESEAR **
+
+
+
+Acceder como Recursos Humanos dispondrá tres opciones para escoger.
+
+° Primero podrá ver la lista completa de todos los trabajadores de la empresa, la cual contendrá 
+información como el RUT, nombre completo, sexo y cargo del trabajador. (OPCION 1)
+
+° Segundo, podrá ver la lista completa de todos los trabajadores filtrando su búsqueda de 3 
+maneras diferentes: Sexo, Cargo y Área/Departamento. (OPCION 2)
+
+° Tercero, completar la ficha de los trabajadores mediante un formulario, el cual permitirá 
+ingresar: (OPCION 3)
+
+	Datos personales del trabajador:
+		I) Nombre completo.
+		II) RUT.
+		III) Sexo.
+		IV) Dirección y Teléfono.
+	Datos Laborales del trabajador:
+		I) Cargo.
+		II) Fecha de ingreso a la compañía.
+		III) Área y departamento al cual pertenece.
+	Contactos de emergencia:
+		I) Nombre de la persona a la cual contactar en caso de emergencia.
+		II) Relación con el trabajador.
+		III) Número de teléfono del contacto.
+	Cargas Familiares del trabajador:
+		I) Nombre de la carga familiar.
+		II) Parentesco.
+		III) Sexo.
+		IV) RUT.
+		
+** DEPENDIENDO DE SU ELECCION DEBERA ESCOGER EL NUMERO DE LA OPCION A DESEAR **
+
+
+Acceder como Trabajador tendrá tres opciones para escoger.
+
+° Primero, podrá consultar sobre su información donde se incluye: (OPCION 1)
+	Información Personal la cual contendrá:
+		I) RUT.
+		II) Nombre completo. 
+		III) Sexo. 
+		IV) Dirección y Teléfono.
+	Datos Laborales los cuales contendrán:
+		I) Fecha de ingreso a la compañía.
+		II) Cargo, Área y Departamento al cual pertenece.
+	Cargas Familiares la cual contendrá:	
+		I) Nombre de la carga familiar.
+		II) Parentesco.
+		III) Sexo.
+		IV) RUT.
+	Contactos de emergencia el cual contendrá:
+		I) Nombre de la persona a la cual contactar en caso de emergencia.
+		II) Relación con el trabajador.
+		III) Número de teléfono del contacto.
+		
+° Segundo, podrá modificar sus datos personales agregando: (OPCION 2)
+		I) Cargas Familiares.
+		II) Contactos de emergencia.
+		III) Datos Personales (Serán confirmados por administración).
+		
+° Tercero, podrá modificar sus datos personales eliminando: (OPCION 3)
+		I) Cargas Familiares.
+		II) Contactos de emergencia.
+		III) Datos Personales (Serán confirmados por administración).	
+** El trabajador no podrá modificar su RUT ni sus datos laborales. **
+
+** DEPENDIENDO DE SU ELECCION DEBERA ESCOGER EL NUMERO DE LA OPCION A DESEAR **
+
+
+Recuerda que no puedes modificar tu RUT ni tus datos laborales. Para cualquier cambio en esa 
+información, deberás comunicarte con el departamento de Recursos Humanos.
+
+Si tienes alguna duda o necesitas asistencia, no dudes en contactar al equipo de soporte técnico o 
+al departamento de Recursos Humanos de la empresa.
+
+¡Gracias por utilizar nuestro nuevo sistema de gestión de información de trabajadores! Esperamos 
+que esta herramienta te ayude a agilizar tus tareas y mantener tu información actualizada de 
+manera eficiente.
