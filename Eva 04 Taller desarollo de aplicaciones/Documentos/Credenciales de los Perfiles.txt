@@ -1,0 +1,16 @@
+Credenciales para iniciar con los 3 perfiles:
+
+Perfil 1 (Trabajador): 
+
+username: trabajador1
+clave: 123
+
+Perfil 2 (rrhh):
+
+username: rrhh1
+clave: 1234
+
+Perfil 3 (jefe_rrhh):
+
+username: jefe_rrhh1
+clave: 12345
