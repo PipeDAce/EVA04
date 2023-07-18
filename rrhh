@@ -1,0 +1,21 @@
+import cx_Oracle
+from conexion import Conexion
+from beautifultable import BeautifulTable
+
+# Crear una instancia de la clase Conexion
+conexion = Conexion()
+
+# Obtener una conexión a la base de datos
+conexion.getConnection()
+
+# Filtrar por área
+area_id = input("ingresa"(int))
+print("Filtrando por área...")
+cursor = conexion.connection.cursor()
+consulta = f"SELECT T.id_trabajador, T.rut_trabajador, T.id_sexo_fk, T.nombre_trabajador, T.id_cargo_fk, T.direccion, T.telefono, DL.id_area_fk " \
+           f"FROM Trabajador T JOIN FICHA F ON T.id_trabajador = F.id_trabajador_fk JOIN DATOSLABORALES DL ON F.id_datoslaborales_fk = DL.id_datoslaborales " \
+           f"WHERE DL.id_area_fk = {area_id}"
+
+
+print("Consulta:", consulta)
+cursor.execute(consulta)
