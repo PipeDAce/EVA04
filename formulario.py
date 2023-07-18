@@ -604,162 +604,167 @@ while opcion != "0":
                             for i, atributo in enumerate(lista_atributos):
                                 table_atributos.append_row([i + 1, atributo])
                             print(table_atributos)
+
+                            opcion_atributo = input("Ingrese el número del atributo que desea modificar (Ingrese '0' para volver al menú): ")
+
+                            if opcion_atributo == "0":
+                                print("No se realizaron modificaciones.")
+                                break
+
+                            if opcion_atributo.isdigit() and int(opcion_atributo) in range(1, len(lista_atributos) + 1):
+                                opcion_atributo = int(opcion_atributo)
+                            else:
+                                print("Opción inválida. Por favor, elija una opción válida.")
+                                continue
+
+                            if opcion_atributo == 1:
+                                nuevo_nombre = input("Ingrese el nuevo nombre: ")
+
+                                # Actualizar el atributo en la tabla Trabajador
+                                cursor = conexion.connection.cursor()
+                                cursor.execute(f"UPDATE Trabajador SET nombre_trabajador = '{nuevo_nombre}' WHERE id_trabajador = {pk_trabajador}")
+                                conexion.connection.commit()
+                                cursor.close()
+
+                                print("El atributo 'nombre' ha sido modificado exitosamente.")
+
+                            elif opcion_atributo == 2:
+                                nueva_direccion = input("Ingrese la nueva dirección: ")
+
+                                # Actualizar el atributo en la tabla Trabajador
+                                cursor = conexion.connection.cursor()
+                                cursor.execute(f"UPDATE Trabajador SET direccion = '{nueva_direccion}' WHERE id_trabajador = {pk_trabajador}")
+                                conexion.connection.commit()
+                                cursor.close()
+
+                                print("El atributo 'dirección' ha sido modificado exitosamente.")
+
+                            elif opcion_atributo == 3:
+                                nuevo_telefono = input("Ingrese el nuevo teléfono: ")
+
+                                # Actualizar el atributo en la tabla Trabajador
+                                cursor = conexion.connection.cursor()
+                                cursor.execute(f"UPDATE Trabajador SET telefono = '{nuevo_telefono}' WHERE id_trabajador = {pk_trabajador}")
+                                conexion.connection.commit()
+                                cursor.close()
+
+                                print("El atributo 'teléfono' ha sido modificado exitosamente.")
+
+                            elif opcion_atributo == 4:
+                                nuevo_nombre_contacto = input("Ingrese el nuevo nombre de contacto: ")
+
+                                # Verificar si existe un registro en la tabla CONTACTODEEMERGENCIA para el trabajador
+                                cursor = conexion.connection.cursor()
+                                cursor.execute(f"SELECT id_contacto_emergencia FROM CONTACTODEEMERGENCIA WHERE id_trabajador_fk = {pk_trabajador}")
+                                resultado_contacto = cursor.fetchone()
+                                cursor.close()
+
+                                if resultado_contacto is not None:
+                                    id_contacto_emergencia = resultado_contacto[0]
+
+                                    # Actualizar el atributo en la tabla CONTACTODEEMERGENCIA
+                                    cursor = conexion.connection.cursor()
+                                    cursor.execute(f"UPDATE CONTACTODEEMERGENCIA SET nombre_contacto = '{nuevo_nombre_contacto}' WHERE id_contacto_emergencia = {id_contacto_emergencia}")
+                                    conexion.connection.commit()
+                                    cursor.close()
+
+                                    print("El atributo 'nombre de contacto' ha sido modificado exitosamente.")
+                                else:
+                                    print("El trabajador no tiene datos de contacto de emergencia.")
+
+                            elif opcion_atributo == 5:
+                                nuevo_telefono_contacto = input("Ingrese el nuevo teléfono de contacto: ")
+
+                                # Verificar si existe un registro en la tabla CONTACTODEEMERGENCIA para el trabajador
+                                cursor = conexion.connection.cursor()
+                                cursor.execute(f"SELECT id_contacto_emergencia FROM CONTACTODEEMERGENCIA WHERE id_trabajador_fk = {pk_trabajador}")
+                                resultado_contacto = cursor.fetchone()
+                                cursor.close()
+
+                                if resultado_contacto is not None:
+                                    id_contacto_emergencia = resultado_contacto[0]
+
+                                    # Actualizar el atributo en la tabla CONTACTODEEMERGENCIA
+                                    cursor = conexion.connection.cursor()
+                                    cursor.execute(f"UPDATE CONTACTODEEMERGENCIA SET telefono_contacto = '{nuevo_telefono_contacto}' WHERE id_contacto_emergencia = {id_contacto_emergencia}")
+                                    conexion.connection.commit()
+                                    cursor.close()
+
+                                    print("El atributo 'teléfono de contacto' ha sido modificado exitosamente.")
+                                else:
+                                    print("El trabajador no tiene datos de contacto de emergencia.")
+
+                            elif opcion_atributo == 6:
+                                nuevo_nombre_carga = input("Ingrese el nuevo nombre de la carga: ")
+
+                                # Verificar si existe una carga familiar con el mismo PK de trabajador
+                                cursor = conexion.connection.cursor()
+                                cursor.execute(f"SELECT * FROM CARGASFAMILIARES WHERE id_trabajador_fk = {pk_trabajador}")
+                                resultado_carga_familiar = cursor.fetchone()
+                                cursor.close()
+
+                                if resultado_carga_familiar is not None:
+                                    # Actualizar el atributo en la tabla CARGASFAMILIARES
+                                    cursor = conexion.connection.cursor()
+                                    cursor.execute(f"UPDATE CARGASFAMILIARES SET nombre_carga = '{nuevo_nombre_carga}' WHERE id_trabajador_fk = {pk_trabajador}")
+                                    conexion.connection.commit()
+                                    cursor.close()
+
+                                    print("El atributo 'nombre_carga' ha sido modificado exitosamente.")
+                                else:
+                                    print("No se encontró ninguna carga familiar para el trabajador.")
+
+                            elif opcion_atributo == 7:
+                                nuevo_parentesco = input("Ingrese el nuevo parentesco: ")
+
+                                # Verificar si existe una carga familiar con el mismo PK de trabajador
+                                cursor = conexion.connection.cursor()
+                                cursor.execute(f"SELECT * FROM CARGASFAMILIARES WHERE id_trabajador_fk = {pk_trabajador}")
+                                resultado_carga_familiar = cursor.fetchone()
+                                cursor.close()
+
+                                if resultado_carga_familiar is not None:
+                                    # Actualizar el atributo en la tabla CARGASFAMILIARES
+                                    cursor = conexion.connection.cursor()
+                                    cursor.execute(f"UPDATE CARGASFAMILIARES SET parentesco = '{nuevo_parentesco}' WHERE id_trabajador_fk = {pk_trabajador}")
+                                    conexion.connection.commit()
+                                    cursor.close()
+
+                                    print("El atributo 'parentesco' ha sido modificado exitosamente.")
+                                else:
+                                    print("No se encontró ninguna carga familiar para el trabajador.")
+
+                            elif opcion_atributo == 8:
+                                nuevo_rut_carga = input("Ingrese el nuevo RUT de la carga: ")
+
+                                # Verificar si existe una carga familiar con el mismo PK de trabajador
+                                cursor = conexion.connection.cursor()
+                                cursor.execute(f"SELECT * FROM CARGASFAMILIARES WHERE id_trabajador_fk = {pk_trabajador}")
+                                resultado_carga_familiar = cursor.fetchone()
+                                cursor.close()
+
+                                if resultado_carga_familiar is not None:
+                                    # Actualizar el atributo en la tabla CARGASFAMILIARES
+                                    cursor = conexion.connection.cursor()
+                                    cursor.execute(f"UPDATE CARGASFAMILIARES SET rut_carga = '{nuevo_rut_carga}' WHERE id_trabajador_fk = {pk_trabajador}")
+                                    conexion.connection.commit()
+                                    cursor.close()
+
+                                    print("El atributo 'rut_carga' ha sido modificado exitosamente.")
+                                else:
+                                    print("No se encontró ninguna carga familiar para el trabajador.")
+
+                            else:
+                                print("Opción inválida. Por favor, elija una opción válida.")
+
+                        elif opcion_edicion == "0":
+                            print("No se realizaron modificaciones.")
                         else:
                             print("Opción inválida. Por favor, elija una opción válida.")
 
-                print("Tus credenciales no coinciden. Por favor, verifica tus datos.")
-                break
-
-                # Solicitar al usuario que ingrese el número del atributo a modificar
-                opcion_atributo = input("Ingrese el número del atributo que desea modificar: ")
-        
-                if opcion_atributo == "1":
-                    nuevo_nombre = input("Ingrese el nuevo nombre: ")
-
-                    # Actualizar el atributo en la tabla Trabajador
-                    cursor = conexion.connection.cursor()
-                    cursor.execute(f"UPDATE Trabajador SET nombre_trabajador = '{nuevo_nombre}' WHERE id_trabajador = {pk_trabajador}")
-                    conexion.connection.commit()
-                    cursor.close()
-
-                    print("El atributo 'nombre' ha sido modificado exitosamente.")
-
-                elif opcion_atributo == "2":
-                    nueva_direccion = input("Ingrese la nueva dirección: ")
-
-                    # Actualizar el atributo en la tabla Trabajador
-                    cursor = conexion.connection.cursor()
-                    cursor.execute(f"UPDATE Trabajador SET direccion = '{nueva_direccion}' WHERE id_trabajador = {pk_trabajador}")
-                    conexion.connection.commit()
-                    cursor.close()
-
-                    print("El atributo 'dirección' ha sido modificado exitosamente.")
-
-                elif opcion_atributo == "3":
-                    nuevo_telefono = input("Ingrese el nuevo teléfono: ")
-
-                    # Actualizar el atributo en la tabla Trabajador
-                    cursor = conexion.connection.cursor()
-                    cursor.execute(f"UPDATE Trabajador SET telefono = '{nuevo_telefono}' WHERE id_trabajador = {pk_trabajador}")
-                    conexion.connection.commit()
-                    cursor.close()
-
-                    print("El atributo 'teléfono' ha sido modificado exitosamente.")
-
-                elif opcion_atributo == "4":
-                    nuevo_nombre_contacto = input("Ingrese el nuevo nombre de contacto: ")
-
-                    # Verificar si existe un registro en la tabla CONTACTODEEMERGENCIA para el trabajador
-                    cursor = conexion.connection.cursor()
-                    cursor.execute(f"SELECT id_contacto_emergencia FROM CONTACTODEEMERGENCIA WHERE id_trabajador_fk = {pk_trabajador}")
-                    resultado_contacto = cursor.fetchone()
-                    cursor.close()
-
-                    if resultado_contacto is not None:
-                        id_contacto_emergencia = resultado_contacto[0]
-
-                        # Actualizar el atributo en la tabla CONTACTODEEMERGENCIA
-                        cursor = conexion.connection.cursor()
-                        cursor.execute(f"UPDATE CONTACTODEEMERGENCIA SET nombre_contacto = '{nuevo_nombre_contacto}' WHERE id_contacto_emergencia = {id_contacto_emergencia}")
-                        conexion.connection.commit()
-                        cursor.close()
-
-                        print("El atributo 'nombre de contacto' ha sido modificado exitosamente.")
-                    else:
-                        print("El trabajador no tiene datos de contacto de emergencia.")
-
-                elif opcion_atributo == "5":
-                    nuevo_telefono_contacto = input("Ingrese el nuevo teléfono de contacto: ")
-
-                    # Verificar si existe un registro en la tabla CONTACTODEEMERGENCIA para el trabajador
-                    cursor = conexion.connection.cursor()
-                    cursor.execute(f"SELECT id_contacto_emergencia FROM CONTACTODEEMERGENCIA WHERE id_trabajador_fk = {pk_trabajador}")
-                    resultado_contacto = cursor.fetchone()
-                    cursor.close()
-
-                    if resultado_contacto is not None:
-                        id_contacto_emergencia = resultado_contacto[0]
-
-                        # Actualizar el atributo en la tabla CONTACTODEEMERGENCIA
-                        cursor = conexion.connection.cursor()
-                        cursor.execute(f"UPDATE CONTACTODEEMERGENCIA SET telefono_contacto = '{nuevo_telefono_contacto}' WHERE id_contacto_emergencia = {id_contacto_emergencia}")
-                        conexion.connection.commit()
-                        cursor.close()
-
-                        print("El atributo 'teléfono de contacto' ha sido modificado exitosamente.")
-                    else:
-                        print("El trabajador no tiene datos de contacto de emergencia.")
-
-                elif opcion_atributo == "6":
-                    nuevo_nombre_carga = input("Ingrese el nuevo nombre de la carga: ")
-
-                    # Verificar si existe una carga familiar con el mismo PK de trabajador
-                    cursor = conexion.connection.cursor()
-                    cursor.execute(f"SELECT * FROM CARGASFAMILIARES WHERE id_trabajador_fk = {pk_trabajador}")
-                    resultado_carga_familiar = cursor.fetchone()
-                    cursor.close()
-
-                    if resultado_carga_familiar is not None:
-                        # Actualizar el atributo en la tabla CARGASFAMILIARES
-                        cursor = conexion.connection.cursor()
-                        cursor.execute(f"UPDATE CARGASFAMILIARES SET nombre_carga = '{nuevo_nombre_carga}' WHERE id_trabajador_fk = {pk_trabajador}")
-                        conexion.connection.commit()
-                        cursor.close()
-
-                        print("El atributo 'nombre_carga' ha sido modificado exitosamente.")
-                    else:
-                        print("No se encontró ninguna carga familiar para el trabajador.")
-
-                elif opcion_atributo == "7":
-                    nuevo_parentesco = input("Ingrese el nuevo parentesco: ")
-
-                    # Verificar si existe una carga familiar con el mismo PK de trabajador
-                    cursor = conexion.connection.cursor()
-                    cursor.execute(f"SELECT * FROM CARGASFAMILIARES WHERE id_trabajador_fk = {pk_trabajador}")
-                    resultado_carga_familiar = cursor.fetchone()
-                    cursor.close()
-
-                    if resultado_carga_familiar is not None:
-                        # Actualizar el atributo en la tabla CARGASFAMILIARES
-                        cursor = conexion.connection.cursor()
-                        cursor.execute(f"UPDATE CARGASFAMILIARES SET parentesco = '{nuevo_parentesco}' WHERE id_trabajador_fk = {pk_trabajador}")
-                        conexion.connection.commit()
-                        cursor.close()
-
-                        print("El atributo 'parentesco' ha sido modificado exitosamente.")
-                    else:
-                        print("No se encontró ninguna carga familiar para el trabajador.")
-
-                elif opcion_atributo == "8":
-                    nuevo_rut_carga = input("Ingrese el nuevo RUT de la carga: ")
-
-                    # Verificar si existe una carga familiar con el mismo PK de trabajador
-                    cursor = conexion.connection.cursor()
-                    cursor.execute(f"SELECT * FROM CARGASFAMILIARES WHERE id_trabajador_fk = {pk_trabajador}")
-                    resultado_carga_familiar = cursor.fetchone()
-                    cursor.close()
-
-                    if resultado_carga_familiar is not None:
-                        # Actualizar el atributo en la tabla CARGASFAMILIARES
-                        cursor = conexion.connection.cursor()
-                        cursor.execute(f"UPDATE CARGASFAMILIARES SET rut_carga = '{nuevo_rut_carga}' WHERE id_trabajador_fk = {pk_trabajador}")
-                        conexion.connection.commit()
-                        cursor.close()
-
-                        print("El atributo 'rut_carga' ha sido modificado exitosamente.")
-                    else:
-                        print("No se encontró ninguna carga familiar para el trabajador.")
-
-                elif opcion_atributo == "0":
-                    print("No se realizaron modificaciones.")
-                    break
                 else:
-                    print("Opción inválida. Por favor, elija una opción válida.")
+                    print("Nombre de trabajador o clave incorrectos.")
 
-            elif opcion_edicion == "0":
-                print("No se realizaron modificaciones.")
-            else:
-                print("Opción inválida. Por favor, elija una opción válida.")
 
 # Cerrar la conexión
 conexion.connection.close()
