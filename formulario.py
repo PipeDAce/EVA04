@@ -514,8 +514,10 @@ while opcion != "0":
                 if nombre_trabajador == "0":
                     break
 
+                clave_trabajador = input("Ingrese su clave: ")
+
                 cursor = conexion.connection.cursor()
-                cursor.execute(f"SELECT * FROM Trabajador WHERE nombre_trabajador = '{nombre_trabajador}'")
+                cursor.execute(f"SELECT * FROM Trabajador WHERE nombre_trabajador = '{nombre_trabajador}' AND clave_trabajador = '{clave_trabajador}'")
                 resultado = cursor.fetchone()
                 cursor.close()
 
