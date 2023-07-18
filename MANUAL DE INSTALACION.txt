@@ -1,0 +1,47 @@
+MANUAL DE INSTALACIÓN DE LA BASE DE DATOS
+
+Este manual te guiará a través del proceso de instalación de la base de datos para el sistema de gestión de información de trabajadores. Asegúrate de seguir cada paso con atención para garantizar una instalación exitosa.
+
+Requisitos del sistema:
+- Sistema operativo compatible (por ejemplo, Windows, macOS o Linux)
+- Espacio suficiente en disco para la base de datos y sus componentes
+- Acceso de administrador para instalar software y configuraciones necesarias
+- Conexión a Internet para descargar los archivos de instalación (si es necesario)
+
+Pasos de instalación:
+
+1. Preparación:
+   - Asegúrate de cumplir con los requisitos del sistema mencionados anteriormente.
+   - Realiza una copia de seguridad de tus datos existentes, si es necesario, para evitar pérdidas durante el proceso de instalación.
+
+2. Descarga del software:
+   - Accede al sitio web oficial del proveedor del software de la base de datos.
+   - Busca la sección de descargas o productos y localiza la versión adecuada para tu sistema operativo.
+   - Descarga el archivo de instalación en tu computadora.
+
+3. Ejecución del instalador:
+   - Navega hasta la ubicación donde se descargó el archivo de instalación.
+   - Haz doble clic en el archivo de instalación para ejecutarlo.
+   - Si se te solicita, otorga los permisos de administrador para continuar con la instalación.
+
+4. Configuración de la base de datos:
+   - Sigue las instrucciones del instalador para configurar la base de datos en tu sistema.
+   - Asegúrate de seleccionar las opciones adecuadas de acuerdo con tus preferencias y requisitos.
+   - Proporciona la información solicitada, como la ubicación de instalación, el nombre de la base de datos y las credenciales de acceso.
+
+5. Instalación:
+   - Haz clic en el botón "Instalar" o "Siguiente" para iniciar el proceso de instalación.
+   - Espera a que el instalador complete las tareas necesarias. Esto puede llevar algunos minutos.
+
+6. Configuración adicional:
+   - Si se te solicita, configura las opciones adicionales según tus necesidades, como la configuración de red, los puertos de comunicación, etc.
+
+7. Finalización de la instalación:
+   - Una vez completada la instalación, recibirás una notificación o un mensaje de confirmación.
+   - Revisa cualquier instrucción adicional proporcionada por el instalador.
+   - Si es necesario, reinicia tu computadora para asegurarte de que todos los componentes estén correctamente configurados.
+INSTALACION VISUAL STUDIO CODE
+Primero que todo tienes que crear una carpeta en el escritorio y abrirla con Visual Studio Code, después crear un archivo llamado conexión donde ingresará los datos de la conexión y otro archivo donde se ejecutará el programa. Estos archivos tienen que estar conectados por clases (El Visual Studio Code tiene que tener instalado las extensiones de Oracle para que pueda funcionar libremente)
+¡Felicidades! Has completado el proceso de instalación de la base de datos. Ahora puedes proceder a configurar y utilizar el sistema de gestión de información de trabajadores siguiendo el Manual de Usuario correspondiente.
+Si encuentras algún problema durante la instalación o necesitas asistencia adicional, no dudes en contactar al soporte técnico del proveedor del software o al equipo de tecnología de tu empresa.
+Nota: Los pasos de instalación pueden variar según el proveedor del software de la base de datos y la versión específica que estés utilizando. Consulta la documentación oficial o el manual del usuario proporcionado por el proveedor para obtener instrucciones precisas de instalación.
