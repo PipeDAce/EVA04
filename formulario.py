@@ -53,13 +53,13 @@ while opcion != "0":
             # Lógica para listar trabajadores
             print("Listado de trabajadores:")
             cursor = conexion.connection.cursor()
-            cursor.execute("SELECT T.id_trabajador, T.rut_trabajador, S.nombre_sexo, T.nombre_trabajador, C.nombre_cargo, T.direccion, T.telefono FROM Trabajador T JOIN SEXO S ON T.id_sexo_fk = S.id_sexo JOIN CARGO C ON T.id_cargo_fk = C.id_cargo ORDER BY T.id_trabajador ASC")
+            cursor.execute("SELECT T.id_trabajador, T.rut_trabajador, S.nombre_sexo, T.nombre_trabajador, C.nombre_cargo, T.direccion, T.telefono, T.clave_trabajador FROM Trabajador T JOIN SEXO S ON T.id_sexo_fk = S.id_sexo JOIN CARGO C ON T.id_cargo_fk = C.id_cargo ORDER BY T.id_trabajador ASC")
             resultados = cursor.fetchall()
             cursor.close()
 
             # Mostrar resultados utilizando BeautifulTable
             table = BeautifulTable()
-            table.columns.header = ["ID Trabajador", "RUT", "Sexo", "Nombre", "Cargo", "Dirección", "Teléfono"]
+            table.columns.header = ["ID Trabajador", "RUT", "Sexo", "Nombre", "Cargo", "Dirección", "Teléfono","Clave_trabajador"]
 
             for resultado in resultados:
                 table.append_row(resultado)
@@ -121,7 +121,23 @@ while opcion != "0":
                 conexion.connection.commit()
                 cursor.close()
 
+                # Solicitar el ID del trabajador al usuario
+                id_trabajador_fk = input("Ingrese el ID del trabajador: ")
+
+                # Generar nombre de usuario y contraseña
+                usuario = nombre.replace(" ", "").lower()
+                contraseña = str(clave_trabajador)
+
+                # Insertar nombre de usuario, contraseña y ID de trabajador en la tabla USUARIO_TRABAJADOR
+                cursor = conexion.connection.cursor()
+                cursor.execute(f"INSERT INTO USUARIO_TRABAJADOR (nombre_usuario, contraseña, id_trabajador_fk) VALUES ('{usuario}', '{contraseña}', {id_trabajador_fk})")
+                conexion.connection.commit()
+                cursor.close()
+
                 print("Datos del trabajador agregados correctamente.")
+                print("Usuario y contraseña generados correctamente.")
+
+
 
                 # Solicitar área del trabajador
                 print("Área del trabajador:")
@@ -476,6 +492,109 @@ while opcion != "0":
 
         else:
             print("Opción inválida. Por favor, elija una opción válida.")
+
+
+    elif perfil == "trabajador":
+        # Resto del código para el perfil de Trabajador
+        print("Bienvenido, Trabajador.")
+        opcion = ""
+
+        while opcion != "0":
+            table = BeautifulTable()
+            table.columns.header = ["Opción", "Descripción"]
+            table.append_row(["1", "Mirar tus Datos"])
+            table.append_row(["0", "Salir"])
+            print("Opciones disponibles:")
+            print(table)
+
+            opcion = input("Ingrese el número de la opción deseada: ")
+
+            if opcion == "1":
+                # Lógica para ver los datos del trabajador
+                nombre_trabajador = input("Ingrese su nombre (Ingrese '0' para volver al menú): ")
+
+                if nombre_trabajador == "0":
+                    break
+
+                cursor = conexion.connection.cursor()
+                cursor.execute(f"SELECT * FROM Trabajador WHERE nombre_trabajador = '{nombre_trabajador}'")
+                resultado = cursor.fetchone()
+                cursor.close()
+
+                if resultado is not None:
+                    # Mostrar los datos del trabajador utilizando BeautifulTable
+                    table_datos = BeautifulTable()
+                    table_datos.columns.header = ["ID Trabajador", "RUT", "ID Sexo", "Nombre", "ID Cargo", "Dirección", "Teléfono", "Clave_trabajador"]
+                    table_datos.append_row(resultado)
+
+                    print("Tus Datos:")
+                    print(table_datos)
+
+                    pk_trabajador = resultado[0]  # Obtener el PK del trabajador
+
+                    # Buscar en la tabla DATOSLABORALES utilizando el PK del trabajador
+                    cursor = conexion.connection.cursor()
+                    cursor.execute(f"SELECT * FROM DATOSLABORALES WHERE id_datoslaborales = {pk_trabajador}")
+                    resultado_datoslaborales = cursor.fetchone()
+                    cursor.close()
+
+                    if resultado_datoslaborales is not None:
+                        # Mostrar los datos laborales del trabajador utilizando BeautifulTable
+                        table_datoslaborales = BeautifulTable()
+                        table_datoslaborales.columns.header = ["ID Datos Laborales", "ID Cargo", "ID Departamento", "Fecha Ingreso", "ID Área"]
+                        fecha_ingreso = resultado_datoslaborales[3].strftime("%Y-%m-%d")
+                        table_datoslaborales.append_row([resultado_datoslaborales[0], resultado_datoslaborales[1], resultado_datoslaborales[2], fecha_ingreso, resultado_datoslaborales[4]])
+
+                        print("Tus Datos Laborales:")
+                        print(table_datoslaborales)
+                    else:
+                        print("El trabajador no tiene datos laborales.")
+
+                    # Buscar en la tabla CONTACTODEEMERGENCIA utilizando el PK del trabajador
+                    cursor = conexion.connection.cursor()
+                    cursor.execute(f"SELECT * FROM CONTACTODEEMERGENCIA WHERE id_trabajador_fk = {pk_trabajador}")
+                    resultado_contactoemergencia = cursor.fetchone()
+                    cursor.close()
+
+                    if resultado_contactoemergencia is not None:
+                        # Mostrar los datos de contacto de emergencia utilizando BeautifulTable
+                        table_contactoemergencia = BeautifulTable()
+                        table_contactoemergencia.columns.header = ["ID Contacto Emergencia", "ID Trabajador", "Nombre Contacto", "ID Relación", "Teléfono Contacto"]
+                        table_contactoemergencia.append_row(resultado_contactoemergencia)
+
+                        print("Datos de Contacto de Emergencia:")
+                        print(table_contactoemergencia)
+                    else:
+                        print("El trabajador no tiene datos de contacto de emergencia.")
+
+                    # Buscar en la tabla CARGASFAMILIARES utilizando el PK del trabajador
+                    cursor = conexion.connection.cursor()
+                    cursor.execute(f"SELECT * FROM CARGASFAMILIARES WHERE id_trabajador_fk = {pk_trabajador}")
+                    resultados_cargasfamiliares = cursor.fetchall()
+                    cursor.close()
+
+                    if len(resultados_cargasfamiliares) > 0:
+                        # Mostrar los datos de cargas familiares utilizando BeautifulTable
+                        table_cargasfamiliares = BeautifulTable()
+                        table_cargasfamiliares.columns.header = ["ID Carga Familiar", "ID Trabajador", "Nombre Carga", "Parentesco", "Sexo Carga", "RUT Carga"]
+                        for carga_familiar in resultados_cargasfamiliares:
+                            table_cargasfamiliares.append_row(carga_familiar)
+
+                        print("Datos de Cargas Familiares:")
+                        print(table_cargasfamiliares)
+                    else:
+                        print("El trabajador no tiene cargas familiares.")
+                else:
+                    print("No se encontraron datos para el trabajador.")
+
+            elif opcion == "0":
+                # Salir del programa
+                print("¡Hasta luego!")
+
+            else:
+                print("Opción inválida. Por favor, elija una opción válida.")
+
+        # Volver a la parte donde se presentan las opciones
 
 # Cerrar la conexión
 conexion.connection.close()
